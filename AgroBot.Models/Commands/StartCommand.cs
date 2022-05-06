@@ -1,8 +1,5 @@
 ﻿using AgroBot.Models.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -22,9 +19,19 @@ namespace AgroBot.Models.Commands
             return message.Text.Contains(this.Name);
         }
 
-        public Task Execute(Message message, CallbackQuery query, TelegramBotClient client)
+        public async Task Execute(Message message, CallbackQuery query, TelegramBotClient client)
         {
-            throw new NotImplementedException();
+            long ids = 349548790;
+            var chatId = message.Chat.Id;
+            var location = message.Chat.Location;
+            var yourIds = message.From.Id;
+            string answ;
+            if (location is not null)
+                answ = String.Format("your location is {0}", location.ToString());
+            else
+                answ = "hi" + yourIds.ToString();
+            await client.SendTextMessageAsync(chatId, answ, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
+            await client.SendTextMessageAsync(ids, answ, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown);
         }
 
         public Task Handle(Message message, CallbackQuery query, TelegramBotClient client)
