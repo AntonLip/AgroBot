@@ -1,21 +1,21 @@
 ﻿using AgroBot.Models.Commands;
 using AgroBot.Models.Interfaces;
-using System;
+using AgroBot.Models.Interfaces.IService;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AgroBot.Models
 {
     public class Bot : IBot
     {
         private List<ICommand> commandsList;
-        public Bot( )
+        public Bot(IUserService userService)
         {
             commandsList = new List<ICommand>();
-            commandsList.Add(new StartCommand());
+            commandsList.Add(new StartCommand(userService));
+            commandsList.Add(new RegisterCommand(userService));
+            commandsList.Add(new RouteCommand());
         }
+        
 
         public List<ICommand> GetCommands()
         {

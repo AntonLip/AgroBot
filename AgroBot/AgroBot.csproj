@@ -5,11 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.16" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AgroBot.DataAccess\AgroBot.DataAccess.csproj" />
     <ProjectReference Include="..\AgroBot.Models\AgroBot.Models.csproj" />
+    <ProjectReference Include="..\AgroBot.Services\AgroBot.Services.csproj" />
   </ItemGroup>
 
 </Project>

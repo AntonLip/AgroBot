@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AgroBot.Models.Interfaces
+namespace AgroBot.Models.Interfaces.IRepository
 {
     public interface IRepository<TModel, TId>
        where TModel : IEntity<TId>
@@ -12,6 +12,5 @@ namespace AgroBot.Models.Interfaces
         Task<TModel> GetByIdAsync(TId id, CancellationToken cancellationToken = default);
         Task UpdateAsync(TId id, TModel obj, CancellationToken cancellationToken = default);
         Task<TModel> RemoveAsync(TId id, CancellationToken cancellationToken = default);
-
     }
 }
