@@ -1,9 +1,11 @@
 ﻿using AgroBot.Models.Interfaces;
 using AgroBot.Models.Settings;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -42,7 +44,7 @@ namespace AgroBot.Controllers
                 }
                 else
                     message = update.Message;
-
+                
                 foreach (var command in _commands)
                 {
                     if (command.Contains(message))
@@ -57,6 +59,7 @@ namespace AgroBot.Controllers
                             Console.WriteLine(ex.Message);
                         }
                     }
+                    
                 }
                 return Ok();
             }

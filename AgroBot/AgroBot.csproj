@@ -15,4 +15,8 @@
     <ProjectReference Include="..\AgroBot.Services\AgroBot.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="files\" />
+  </ItemGroup>
+
 </Project>

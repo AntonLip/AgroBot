@@ -11,12 +11,14 @@ namespace AgroBot
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRouterRepository, RouteRepository>();
 
         }
 
         public static void AddServices(this IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRouteService, RouteService>();
         }
     }
 }
