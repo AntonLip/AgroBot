@@ -1,4 +1,5 @@
 ﻿using AgroBot.Models.Interfaces;
+using AgroBot.Models.Interfaces.IRepository;
 using AgroBot.Models.Interfaces.IService;
 using AutoMapper;
 using System;

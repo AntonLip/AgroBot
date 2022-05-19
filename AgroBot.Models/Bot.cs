@@ -8,12 +8,12 @@ namespace AgroBot.Models
     public class Bot : IBot
     {
         private List<ICommand> commandsList;
-        public Bot(IUserService userService)
+        public Bot(IUserService userService, IRouteService routeService)
         {
             commandsList = new List<ICommand>();
             commandsList.Add(new StartCommand(userService));
             commandsList.Add(new RegisterCommand(userService));
-            commandsList.Add(new RouteCommand());
+            commandsList.Add(new RouteCommand(userService, routeService));
         }
         
 

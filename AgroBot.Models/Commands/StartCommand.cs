@@ -32,7 +32,7 @@ namespace AgroBot.Models.Commands
             var chatId = message.Chat.Id;
             var list = new List<List<KeyboardButton>>();
             var user = await _userService.GetByChatIdAsync(chatId);
-            if (user is null)
+            if (user is null || user.Role is null)
             {
                 var registerButtons = new List<KeyboardButton>();
                 registerButtons.Add(new KeyboardButton("/register"));

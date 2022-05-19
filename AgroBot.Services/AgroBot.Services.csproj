@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AgroBot.DataAccess\AgroBot.DataAccess.csproj" />
     <ProjectReference Include="..\AgroBot.Models\AgroBot.Models.csproj" />
   </ItemGroup>
 

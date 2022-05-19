@@ -12,6 +12,8 @@ namespace AgroBot.Models.ModelsDB
         public string Goods { get; set; }
         public long DriverChatId { get; set; }
         public DateTime AppointDate { get; set; }
+        public DateTime CreatedDate { get; set; }
+
         public DateTime FullffilDate { get; set; }
         public long LogicChatId { get; set; }
         public List<CheckPoint> Points { get; set; }

@@ -6,6 +6,7 @@ namespace AgroBot.Models.Settings
     {
         public MapperProfile()
         {
+            
         }
     }
 }
