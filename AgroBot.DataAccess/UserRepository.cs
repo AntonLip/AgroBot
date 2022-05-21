@@ -29,8 +29,7 @@ namespace AgroBot.DataAccess
 
         public Task<List<ApplicationUser>> GetUserInRole(string role, CancellationToken cancellationToken)
         {
-            return GetCollection().Find(Builders<ApplicationUser>.Filter.Eq(new ExpressionFieldDefinition<ApplicationUser, string>(x => x.Role[0]), role)).ToListAsync(cancellationToken: cancellationToken);
-
+            return GetCollection().Find(Builders<ApplicationUser>.Filter.Where(x => x.Role.Contains(role))).ToListAsync(cancellationToken);
         }
     }
 }

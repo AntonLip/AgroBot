@@ -1,11 +1,9 @@
 ﻿using AgroBot.Models.Interfaces;
 using AgroBot.Models.Settings;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -26,9 +24,10 @@ namespace AgroBot.Controllers
         [HttpPost]
         public async Task<OkResult> post([FromBody] Update update)
         {
-
+           
             try
             {
+               
                 if (update is null)
                     return Ok();
 

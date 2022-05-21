@@ -8,6 +8,7 @@ namespace AgroBot.Models.Interfaces.IService
 {
     public interface IRouteService : IService<Route, Route, Route, Route, Guid>
     {
-        Task<int> InsertMany(List<RouteDto> route, CancellationToken cancellationToken = default);
+        Task<int> InsertMany(List<RouteDto> route, long logistChatID, CancellationToken cancellationToken = default);
+        Task<IList<Route>> GetRouteByLogistChatId(long chatId);
     }
 }

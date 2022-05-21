@@ -16,6 +16,7 @@ namespace AgroBot.Models.ModelsDB
 
         public DateTime FullffilDate { get; set; }
         public long LogicChatId { get; set; }
+        public bool IsDeleted { get; set; }
         public List<CheckPoint> Points { get; set; }
     }
 }

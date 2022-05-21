@@ -14,6 +14,7 @@ namespace AgroBot.Models
             commandsList.Add(new StartCommand(userService));
             commandsList.Add(new RegisterCommand(userService));
             commandsList.Add(new RouteCommand(userService, routeService));
+            commandsList.Add(new DriverCommand(userService, routeService));
         }
         
 
