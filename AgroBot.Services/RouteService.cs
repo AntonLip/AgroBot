@@ -1,5 +1,4 @@
-﻿using AgroBot.DataAccess;
-using AgroBot.Models;
+﻿using AgroBot.Models;
 using AgroBot.Models.Interfaces.IRepository;
 using AgroBot.Models.Interfaces.IService;
 using AgroBot.Models.ModelsDB;
@@ -7,14 +6,12 @@ using AgroBot.Models.ModelsDto;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace AgroBot.Services
 {
-   public class RouteService : BaseService<Route, Route, Route, Route>, IRouteService
+    public class RouteService : BaseService<Route, Route, Route, Route>, IRouteService
     {
         private readonly IMapper _mapper;
         private readonly IRouterRepository _routeRepository;
@@ -23,6 +20,15 @@ namespace AgroBot.Services
         {
             _routeRepository = routeRepository;
             _mapper = mapper;
+        }
+
+        public async Task<IList<Route>> GetRouteByDriverChatId(long chatId)
+        {
+            if (chatId <= 0)
+                throw new ArgumentNullException();
+            RouteFilter filter = new RouteFilter { DriverChatId = chatId };
+            var routes = await _routeRepository.GetFilteredRoutes(filter);
+            return routes is null ? throw new ArgumentException() : routes;
         }
 
         public async Task<IList<Route>> GetRouteByLogistChatId(long chatId)

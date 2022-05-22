@@ -68,19 +68,21 @@ namespace AgroBot.Models.Commands
                         if(cmd.Length == 1)
                         {
                             var users = await _userService.GetUnregistredUsers();
+                            
                             foreach (var item in users)
                             {
-                                InlineKeyboardButton gr442 = new InlineKeyboardButton("Логист");
-                                gr442.CallbackData = @"/register" + " " + item.ChatId + " " + "Logist";
-                                InlineKeyboardButton gr443 = new InlineKeyboardButton("Админ");
-                                gr443.CallbackData = @"/register" + " " + item.ChatId + " " + "Admin";
-                                InlineKeyboardButton gr444 = new InlineKeyboardButton("Водитель");
-                                gr444.CallbackData = @"/register" + " " + item.ChatId + " " + "Driver";
-                                InlineKeyboardButton gr434 = new InlineKeyboardButton("Управление");
-                                gr434.CallbackData = @"/register" + " " + item.ChatId + " " + "Manager";
-                                InlineKeyboardButton gr435g = new InlineKeyboardButton("Бухгалтер");
-                                gr435g.CallbackData = @"/register" + " " + item.ChatId + " " + "Accountant";
                                 List<List<InlineKeyboardButton>> inlineKeyboardButtons = new List<List<InlineKeyboardButton>>();
+                                InlineKeyboardButton gr442 = new InlineKeyboardButton("Логист");
+                                gr442.CallbackData = @"/register" + " " + item.ChatId + " setrole" + "Logist";
+                                InlineKeyboardButton gr443 = new InlineKeyboardButton("Админ");
+                                gr443.CallbackData = @"/register" + " " + item.ChatId + " setrole" + "Admin";
+                                InlineKeyboardButton gr444 = new InlineKeyboardButton("Водитель");
+                                gr444.CallbackData = @"/register" + " " + item.ChatId + " setrole" + "Driver";
+                                InlineKeyboardButton gr434 = new InlineKeyboardButton("Управление");
+                                gr434.CallbackData = @"/register" + " " + item.ChatId + " setrole" + "Manager";
+                                InlineKeyboardButton gr435g = new InlineKeyboardButton("Бухгалтер");
+                                gr435g.CallbackData = @"/register" + " " + item.ChatId + " setrole " + "Accountant";
+                                
                                 var list = new List<InlineKeyboardButton>();
                                 list.Add(gr442);
                                 list.Add(gr443);
@@ -91,16 +93,27 @@ namespace AgroBot.Models.Commands
                                 var list2 = new List<InlineKeyboardButton>();
                                 InlineKeyboardButton removeUsers = new InlineKeyboardButton("Удалить пользователя");
                                 removeUsers.CallbackData = @"/register" + " " + item.Id + " " + "Remove";
-                                list2.Add(removeUsers);
-                                InlineKeyboardButton allUsers = new InlineKeyboardButton("Показать всех");
-                                allUsers.CallbackData = @"/register" + " " + "All";
-                                list2.Add(allUsers);
+                                list2.Add(removeUsers);                                
                                 inlineKeyboardButtons.Add(list2);
                                 InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup(inlineKeyboardButtons);
                                 await client.SendTextMessageAsync(chatId, item.FirstName + " " + item.LastName, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, replyMarkup: inlineKeyboardMarkup);
                             }
+                            List<List<InlineKeyboardButton>> keybord = new List<List<InlineKeyboardButton>>();
+                            var keybordList = new List<InlineKeyboardButton>();
+                            InlineKeyboardButton allUsers = new InlineKeyboardButton("Показать всех пользователей");
+                            allUsers.CallbackData = @"/register" + " " + "All";
+                            keybordList.Add(allUsers);
+                            keybord.Add(keybordList);
+                            var keybordMain = new List<InlineKeyboardButton>();
+                            InlineKeyboardButton main = new InlineKeyboardButton("Вернуться в главное меню");
+                            main.CallbackData = @"/start";
+                            keybordMain.Add(main);
+                            keybord.Add(keybordMain);
+                            InlineKeyboardMarkup KeyboardMarkup = new InlineKeyboardMarkup(keybord);
+                            await client.SendTextMessageAsync(chatId, "Меню пользователей", parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, replyMarkup: KeyboardMarkup);
+
                         }
-                        if(cmd.Length == 2)
+                        if (cmd.Length == 2)
                         {
                             var users = await _userService.GetAllAsync();
                             foreach (var item in users)
@@ -122,7 +135,7 @@ namespace AgroBot.Models.Commands
                             Guid.TryParse(cmd[1], out guid);
                             await _userService.DeleteAsync(guid);
                         }
-                        else
+                        if (cmd.Length == 4 && cmd[2] == "setrole")
                         {
                              await _userService.SetRoleAsync(long.Parse(cmd[1]), cmd[2]);
                              await client.SendTextMessageAsync(chatId, "Роль изменена", Telegram.Bot.Types.Enums.ParseMode.Markdown);
