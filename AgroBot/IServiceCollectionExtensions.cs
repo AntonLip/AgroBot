@@ -19,6 +19,7 @@ namespace AgroBot
         {
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRouteService, RouteService>();
+            services.AddTransient<IReportService, ReportService>();
         }
     }
 }
