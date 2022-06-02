@@ -22,9 +22,9 @@ namespace AgroBot.DataAccess
         public async Task<IList<Route>> GetFilteredRoutes(RouteFilter externalFilter, CancellationToken cancellationToken = default)
         {
             FilterDefinition<Route> filter =
-                 Builders<Route>.Filter.Eq(new ExpressionFieldDefinition<Route, bool>(x => x.IsDeleted), false);
+                 Builders<Route>.Filter.Empty;
 
-           
+
             if (!String.IsNullOrEmpty(externalFilter?.Name))
             {
                 filter &= Builders<Route>.Filter.Eq(x => x.Name, externalFilter.Name);

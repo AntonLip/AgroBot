@@ -212,6 +212,8 @@ namespace AgroBot.Models.Commands
                             await _routeService.UpdateAsync(routeId, route);
                             var answ = string.Format("На маршрут {0} назначен {1} {2}", route.Name, driver.LastName, driver.FirstName);
                             await client.SendTextMessageAsync(chatId, answ, Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                            var answDr = string.Format("Вы назначены на маршрут {0}, подробную информацию можете посмотреть в разделе о ваших маршрутах", route.Name, driver.LastName, driver.FirstName);
+                            await client.SendTextMessageAsync(driver.ChatId, answDr, Telegram.Bot.Types.Enums.ParseMode.Markdown);
 
                         }
                         else

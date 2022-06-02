@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgroBot.Models", "AgroBot.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgroBot.Services", "AgroBot.Services\AgroBot.Services.csproj", "{F7A56528-F937-48C4-9A05-6F1C0E459B86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroBot.DataAccess", "AgroBot.DataAccess\AgroBot.DataAccess.csproj", "{1D2C6430-AF4D-4681-8D2C-EB56CD3F4D41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgroBot.DataAccess", "AgroBot.DataAccess\AgroBot.DataAccess.csproj", "{1D2C6430-AF4D-4681-8D2C-EB56CD3F4D41}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgroBot.Services.Tests", "AgroBot.Services.Tests\AgroBot.Services.Tests.csproj", "{42EF674E-E787-43E6-8FF5-0209ECE6E9D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1D2C6430-AF4D-4681-8D2C-EB56CD3F4D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D2C6430-AF4D-4681-8D2C-EB56CD3F4D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D2C6430-AF4D-4681-8D2C-EB56CD3F4D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42EF674E-E787-43E6-8FF5-0209ECE6E9D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42EF674E-E787-43E6-8FF5-0209ECE6E9D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42EF674E-E787-43E6-8FF5-0209ECE6E9D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42EF674E-E787-43E6-8FF5-0209ECE6E9D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

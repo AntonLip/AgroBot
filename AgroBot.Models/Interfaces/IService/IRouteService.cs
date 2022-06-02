@@ -10,5 +10,6 @@ namespace AgroBot.Models.Interfaces.IService
     {
         Task<int> InsertMany(List<RouteDto> route, long logistChatID, CancellationToken cancellationToken = default);
         Task<IList<Route>> GetRouteByLogistChatId(long chatId);
+        Task<IList<Route>> GetRouteByDriverChatId(long chatId);
     }
 }

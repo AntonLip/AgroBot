@@ -30,53 +30,54 @@ namespace AgroBot.Models.Commands
         public async Task Execute(Message message, CallbackQuery query, TelegramBotClient client)
         {
             var chatId = message.Chat.Id;
-            var list = new List<List<KeyboardButton>>();
+            List<List<InlineKeyboardButton>> keybord = new List<List<InlineKeyboardButton>>();
             var user = await _userService.GetByChatIdAsync(chatId);
             if (user is null || user.Role is null)
             {
-                var registerButtons = new List<KeyboardButton>();
-                registerButtons.Add(new KeyboardButton("/register"));
-                list.Add(registerButtons);
+                InlineKeyboardButton registerButton = new InlineKeyboardButton("Регистрация");
+                registerButton.CallbackData = @"/register";
+                var registerList = new List<InlineKeyboardButton>();
+                registerList.Add(registerButton);
+                keybord.Add(registerList);
             }
             else
             {
                 if (user.Role.Contains("Logist"))
-                {
-                    var buttonsRoutes = new List<KeyboardButton>();
-                    buttonsRoutes.Add(new KeyboardButton("/routes"));
-                    list.Add(buttonsRoutes);
-                    await client.SendTextMessageAsync(chatId, "Для работы с маршрутами нажмите кнопку routes", Telegram.Bot.Types.Enums.ParseMode.Markdown);
-
-                }
-                if (user.Role.Contains("Manager"))
-                {
-                    var buttonsRoutes = new List<KeyboardButton>();
-                    buttonsRoutes.Add(new KeyboardButton("/manager"));
-                    list.Add(buttonsRoutes);
-                    await client.SendTextMessageAsync(chatId, "Для контроля маршрутов manager", Telegram.Bot.Types.Enums.ParseMode.Markdown);
-                }
-                if (user.Role.Contains("Admin"))
-                {
-                    var buttonsRoutes = new List<KeyboardButton>();
-                    buttonsRoutes.Add(new KeyboardButton("/register"));
-                    list.Add(buttonsRoutes);
-                    await client.SendTextMessageAsync(chatId, "Для работы с пользователями register", Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                {                    
+                    InlineKeyboardButton logistButton = new InlineKeyboardButton("Управление маршрутами");
+                    logistButton.CallbackData = @"/routes";
+                    var logistList = new List<InlineKeyboardButton>();
+                    logistList.Add(logistButton);
+                    keybord.Add(logistList);
                 }
                 if (user.Role.Contains("Driver"))
                 {
-                    var buttonsRoutes = new List<KeyboardButton>();
-                    buttonsRoutes.Add(new KeyboardButton("/driver"));
-                    list.Add(buttonsRoutes);
-                    await client.SendTextMessageAsync(chatId, "Для работы нажмите drive", Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                    InlineKeyboardButton driverButton = new InlineKeyboardButton("Водители");
+                    driverButton.CallbackData = @"/driver";
+                    var driverList = new List<InlineKeyboardButton>();
+                    driverList.Add(driverButton);
+                    keybord.Add(driverList);
+                }
+                if (user.Role.Contains("Manager"))
+                {
+                    InlineKeyboardButton managerButton = new InlineKeyboardButton("Контроль маршрутов");
+                    managerButton.CallbackData = @"/manager";
+                    var managerList = new List<InlineKeyboardButton>();
+                    managerList.Add(managerButton);
+                    keybord.Add(managerList);
+                }
+                if (user.Role.Contains("Admin"))
+                {
+                    InlineKeyboardButton registerButton = new InlineKeyboardButton("Работа с пользователями");
+                    registerButton.CallbackData = @"/register";
+                    var registerList = new List<InlineKeyboardButton>();
+                    registerList.Add(registerButton);
+                    keybord.Add(registerList);
                 }
             }
-            
-            var startButtons = new List<KeyboardButton>();
-            startButtons.Add(new KeyboardButton("/start"));
-            list.Add(startButtons);
+            InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup(keybord);
 
-            var markup = new ReplyKeyboardMarkup(list);
-            await client.SendTextMessageAsync(chatId, "Для регистрации нажмите кнопку register", parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, replyMarkup: markup);
+            await client.SendTextMessageAsync(chatId, "Главное меню", parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, replyMarkup: inlineKeyboardMarkup);
         }
 
         public Task Handle(Message message, CallbackQuery query, TelegramBotClient client)
