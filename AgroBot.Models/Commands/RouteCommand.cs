@@ -69,19 +69,20 @@ namespace AgroBot.Models.Commands
                     using (var fileStream = new StreamReader(Path.Combine("files", message.Document.FileId)))
                     {
                         var doc = await fileStream.ReadToEndAsync();
-                        items = JsonConvert.DeserializeObject<List<RouteDto>>(doc);
-                    }
-                    if(items is not null)
-                    {
-                        var cnt = await _routeService.InsertMany(items, chatId);
-                        string answ = string.Format("добавлено {0} маршрут(ов)", cnt);
-                        await client.SendTextMessageAsync(chatId, answ, Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                        try
+                        {
+                             items = JsonConvert.DeserializeObject<List<RouteDto>>(doc);
+                             var cnt = await _routeService.InsertMany(items, chatId);
+                            string answ = string.Format("добавлено {0} маршрут(ов)", cnt);
+                            await client.SendTextMessageAsync(chatId, answ, Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                        }
+                        catch (Exception)
+                        {
+                            await client.SendTextMessageAsync(chatId, "Ошибка! Проверьте  данные", Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                        }
                        
                     }
-                    else
-                    {
-                        await client.SendTextMessageAsync(chatId, "Ошибка! Проверьте  данные", Telegram.Bot.Types.Enums.ParseMode.Markdown);
-                    }
+                    
                 }
                 if(message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
                 {
