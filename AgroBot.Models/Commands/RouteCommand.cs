@@ -66,7 +66,7 @@ namespace AgroBot.Models.Commands
                         var doc = await client.GetInfoAndDownloadFileAsync(message.Document.FileId, fileStream);
                     }
                     await client.SendTextMessageAsync(chatId, "Файл принят, идет обработка", Telegram.Bot.Types.Enums.ParseMode.Markdown);
-                    using (var fileStream = new StreamReader(Path.Combine("files", message.Document.FileId)))
+                    using (var fileStream = new StreamReader(message.Document.FileId))
                     {
                         var doc = await fileStream.ReadToEndAsync();
                         try
@@ -80,8 +80,9 @@ namespace AgroBot.Models.Commands
                         {
                             await client.SendTextMessageAsync(chatId, "Ошибка! Проверьте  данные", Telegram.Bot.Types.Enums.ParseMode.Markdown);
                         }
-                        System.IO.File.Delete(message.Document.FileId);
+                        
                     }
+                    System.IO.File.Delete(message.Document.FileId);
                     
                 }
                 if(message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
