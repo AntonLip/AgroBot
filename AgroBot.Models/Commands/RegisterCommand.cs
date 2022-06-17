@@ -135,6 +135,7 @@ namespace AgroBot.Models.Commands
                             Guid.TryParse(cmd[1], out guid);
                             await _userService.DeleteAsync(guid);
                         }
+                        await client.SendTextMessageAsync(chatId, "попытка", Telegram.Bot.Types.Enums.ParseMode.Markdown);
                         if (cmd.Length == 4 && cmd[2] == "setrole")
                         {
                             await client.SendTextMessageAsync(chatId, "попытка изменения роли", Telegram.Bot.Types.Enums.ParseMode.Markdown);
