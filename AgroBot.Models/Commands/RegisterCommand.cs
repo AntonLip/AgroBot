@@ -73,15 +73,15 @@ namespace AgroBot.Models.Commands
                             {
                                 List<List<InlineKeyboardButton>> inlineKeyboardButtons = new List<List<InlineKeyboardButton>>();
                                 InlineKeyboardButton gr442 = new InlineKeyboardButton("Логист");
-                                gr442.CallbackData = @"/register" + " " + item.ChatId + " setrole " + "Logist";
+                                gr442.CallbackData = @"/register" + " " + item.ChatId.ToString() + " " + "setrole" + " " + "Logist";
                                 InlineKeyboardButton gr443 = new InlineKeyboardButton("Админ");
-                                gr443.CallbackData = @"/register" + " " + item.ChatId + " setrole " + "Admin";
+                                gr443.CallbackData = @"/register" + " " + item.ChatId.ToString() + " " + "setrole" + " " + "Admin";
                                 InlineKeyboardButton gr444 = new InlineKeyboardButton("Водитель");
-                                gr444.CallbackData = @"/register" + " " + item.ChatId + " setrole " + "Driver";
+                                gr444.CallbackData = @"/register" + " " + item.ChatId.ToString() + " " + "setrole" + " " + "Driver";
                                 InlineKeyboardButton gr434 = new InlineKeyboardButton("Управление");
-                                gr434.CallbackData = @"/register" + " " + item.ChatId + " setrole " + "Manager";
+                                gr434.CallbackData = @"/register" + " " + item.ChatId.ToString() + " " + "setrole" + " " + "Manager";
                                 InlineKeyboardButton gr435g = new InlineKeyboardButton("Бухгалтер");
-                                gr435g.CallbackData = @"/register" + " " + item.ChatId + " setrole " + "Accountant";
+                                gr435g.CallbackData = @"/register" + " " + item.ChatId.ToString() + " " + "setrole" + " " + "Accountant";
                                 
                                 var list = new List<InlineKeyboardButton>();
                                 list.Add(gr442);
