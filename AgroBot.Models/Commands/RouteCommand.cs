@@ -61,7 +61,7 @@ namespace AgroBot.Models.Commands
                 if (message.Type == Telegram.Bot.Types.Enums.MessageType.Document)
                 {
                     List<RouteDto> items = null;
-                    using (var fileStream = new FileStream(Path.Combine("files", message.Document.FileId), FileMode.Create))
+                    using (var fileStream = new FileStream(message.Document.FileId, FileMode.Create))
                     {
                         var doc = await client.GetInfoAndDownloadFileAsync(message.Document.FileId, fileStream);
                     }
@@ -80,7 +80,7 @@ namespace AgroBot.Models.Commands
                         {
                             await client.SendTextMessageAsync(chatId, "Ошибка! Проверьте  данные", Telegram.Bot.Types.Enums.ParseMode.Markdown);
                         }
-                       
+                        System.IO.File.Delete(message.Document.FileId);
                     }
                     
                 }
