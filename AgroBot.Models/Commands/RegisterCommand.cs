@@ -137,7 +137,8 @@ namespace AgroBot.Models.Commands
                         }
                         if (cmd.Length == 4 && cmd[2] == "setrole")
                         {
-                             await _userService.SetRoleAsync(long.Parse(cmd[1]), cmd[2]);
+                            await client.SendTextMessageAsync(chatId, "попытка изменения роли", Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                            await _userService.SetRoleAsync(long.Parse(cmd[1]), cmd[2]);
                              await client.SendTextMessageAsync(chatId, "Роль изменена", Telegram.Bot.Types.Enums.ParseMode.Markdown);
                         }
                     }
