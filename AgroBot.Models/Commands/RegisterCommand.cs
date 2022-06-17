@@ -42,6 +42,12 @@ namespace AgroBot.Models.Commands
                     Id = Guid.NewGuid(),
                     IsRegistred = false
                 };
+                var userAd = await _userService.GetUserInRole("Admin");
+                foreach (var item in userAd)
+                { 
+                    await client.SendTextMessageAsync(item.ChatId, user.ChatId.ToString() + " " + user.FirstName + " " + user.LastName, Telegram.Bot.Types.Enums.ParseMode.Markdown);
+
+                }
                 var userC = await _userService.AddAsync(user);
                 if (userC is null)
                     await client.SendTextMessageAsync(chatId, "Заявка не принята, обратитесь к админу", Telegram.Bot.Types.Enums.ParseMode.Markdown);
