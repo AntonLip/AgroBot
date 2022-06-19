@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AgroBot.Models.Commands.DriverCommand" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAABAQAAAAAAAIAAAAEAAAQAAA=</HashCode>
+      <FileName>Commands\DriverCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AgroBot.Models.Commands.ManagerCommand" BaseTypeListCollapsed="true">
+    <Position X="16" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAABAQAAAAAAAIAAAAEAIAQAAA=</HashCode>
+      <FileName>Commands\ManagerCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AgroBot.Models.Commands.RegisterCommand" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAQAAAAAAAIAAAAEAAAQAAA=</HashCode>
+      <FileName>Commands\RegisterCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AgroBot.Models.Commands.RouteCommand" BaseTypeListCollapsed="true">
+    <Position X="12.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAABAQAAAAAAAIAAAAEAAAQAAA=</HashCode>
+      <FileName>Commands\RouteCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AgroBot.Models.Commands.StartCommand" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAQAAAAAAAIAAAAEAAAQAAA=</HashCode>
+      <FileName>Commands\StartCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="AgroBot.Models.Interfaces.IService.IRouteService">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAIAAAAAA=</HashCode>
+      <FileName>Interfaces\IService\IRouteService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AgroBot.Models.Interfaces.IService.IService&lt;TModel, TModelDto, TModelAddDto, TModelUpdateDto, TId&gt;">
+    <Position X="3.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAAAAIIA=</HashCode>
+      <FileName>Interfaces\IService\IService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AgroBot.Models.Interfaces.IService.IUserService">
+    <Position X="3.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAEAAAAAAEIAAQAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IService\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AgroBot.Models.Interfaces.IRepository.IRepository&lt;TModel, TId&gt;">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAgAAAEAAAAAAAgAAAAAAAAAIAA=</HashCode>
+      <FileName>Interfaces\IRepository\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AgroBot.Models.Interfaces.IRepository.IRouterRepository">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IRepository\IRouterRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AgroBot.Models.Interfaces.IRepository.IUserRepository">
+    <Position X="7.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEIAAAAAAAACAA=</HashCode>
+      <FileName>Interfaces\IRepository\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AgroBot.Models.Interfaces.ICommand">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAQAAAAAAAIAAAAAAAAQAAA=</HashCode>
+      <FileName>Interfaces\ICommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
