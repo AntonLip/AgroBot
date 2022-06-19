@@ -42,6 +42,12 @@ namespace AgroBot.Models.Commands
                     Id = Guid.NewGuid(),
                     IsRegistred = false
                 };
+                var userAd = await _userService.GetUserInRole("Admin");
+                foreach (var item in userAd)
+                { 
+                    await client.SendTextMessageAsync(item.ChatId, user.ChatId.ToString() + " " + user.FirstName + " " + user.LastName, Telegram.Bot.Types.Enums.ParseMode.Markdown);
+
+                }
                 var userC = await _userService.AddAsync(user);
                 if (userC is null)
                     await client.SendTextMessageAsync(chatId, "Заявка не принята, обратитесь к админу", Telegram.Bot.Types.Enums.ParseMode.Markdown);
@@ -73,15 +79,15 @@ namespace AgroBot.Models.Commands
                             {
                                 List<List<InlineKeyboardButton>> inlineKeyboardButtons = new List<List<InlineKeyboardButton>>();
                                 InlineKeyboardButton gr442 = new InlineKeyboardButton("Логист");
-                                gr442.CallbackData = @"/register" + " " + item.ChatId + " setrole" + "Logist";
+                                gr442.CallbackData = @"/register" + " " + item.ChatId.ToString() + " " + "setrole" + " " + "Logist";
                                 InlineKeyboardButton gr443 = new InlineKeyboardButton("Админ");
-                                gr443.CallbackData = @"/register" + " " + item.ChatId + " setrole" + "Admin";
+                                gr443.CallbackData = @"/register" + " " + item.ChatId.ToString() + " " + "setrole" + " " + "Admin";
                                 InlineKeyboardButton gr444 = new InlineKeyboardButton("Водитель");
-                                gr444.CallbackData = @"/register" + " " + item.ChatId + " setrole" + "Driver";
+                                gr444.CallbackData = @"/register" + " " + item.ChatId.ToString() + " " + "setrole" + " " + "Driver";
                                 InlineKeyboardButton gr434 = new InlineKeyboardButton("Управление");
-                                gr434.CallbackData = @"/register" + " " + item.ChatId + " setrole" + "Manager";
+                                gr434.CallbackData = @"/register" + " " + item.ChatId.ToString() + " " + "setrole" + " " + "Manager";
                                 InlineKeyboardButton gr435g = new InlineKeyboardButton("Бухгалтер");
-                                gr435g.CallbackData = @"/register" + " " + item.ChatId + " setrole " + "Accountant";
+                                gr435g.CallbackData = @"/register" + " " + item.ChatId.ToString() + " " + "setrole" + " " + "Accountant";
                                 
                                 var list = new List<InlineKeyboardButton>();
                                 list.Add(gr442);
@@ -135,9 +141,11 @@ namespace AgroBot.Models.Commands
                             Guid.TryParse(cmd[1], out guid);
                             await _userService.DeleteAsync(guid);
                         }
-                        if (cmd.Length == 4 && cmd[2] == "setrole")
+                        await client.SendTextMessageAsync(chatId, "попытка", Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                        if (cmd.Length == 4)
                         {
-                             await _userService.SetRoleAsync(long.Parse(cmd[1]), cmd[2]);
+                            await client.SendTextMessageAsync(chatId, "попытка изменения роли", Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                            await _userService.SetRoleAsync(long.Parse(cmd[1]), cmd[3]);
                              await client.SendTextMessageAsync(chatId, "Роль изменена", Telegram.Bot.Types.Enums.ParseMode.Markdown);
                         }
                     }

@@ -61,27 +61,29 @@ namespace AgroBot.Models.Commands
                 if (message.Type == Telegram.Bot.Types.Enums.MessageType.Document)
                 {
                     List<RouteDto> items = null;
-                    using (var fileStream = new FileStream(Path.Combine("files", message.Document.FileId), FileMode.Create))
+                    using (var fileStream = new FileStream(message.Document.FileId, FileMode.Create))
                     {
                         var doc = await client.GetInfoAndDownloadFileAsync(message.Document.FileId, fileStream);
                     }
                     await client.SendTextMessageAsync(chatId, "Файл принят, идет обработка", Telegram.Bot.Types.Enums.ParseMode.Markdown);
-                    using (var fileStream = new StreamReader(Path.Combine("files", message.Document.FileId)))
+                    using (var fileStream = new StreamReader(message.Document.FileId))
                     {
                         var doc = await fileStream.ReadToEndAsync();
-                        items = JsonConvert.DeserializeObject<List<RouteDto>>(doc);
+                        try
+                        {
+                             items = JsonConvert.DeserializeObject<List<RouteDto>>(doc);
+                             var cnt = await _routeService.InsertMany(items, chatId);
+                            string answ = string.Format("добавлено {0} маршрут(ов)", cnt);
+                            await client.SendTextMessageAsync(chatId, answ, Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                        }
+                        catch (Exception)
+                        {
+                            await client.SendTextMessageAsync(chatId, "Ошибка! Проверьте  данные", Telegram.Bot.Types.Enums.ParseMode.Markdown);
+                        }
+                        
                     }
-                    if(items is not null)
-                    {
-                        var cnt = await _routeService.InsertMany(items, chatId);
-                        string answ = string.Format("добавлено {0} маршрут(ов)", cnt);
-                        await client.SendTextMessageAsync(chatId, answ, Telegram.Bot.Types.Enums.ParseMode.Markdown);
-                       
-                    }
-                    else
-                    {
-                        await client.SendTextMessageAsync(chatId, "Ошибка! Проверьте  данные", Telegram.Bot.Types.Enums.ParseMode.Markdown);
-                    }
+                    System.IO.File.Delete(message.Document.FileId);
+                    
                 }
                 if(message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
                 {
