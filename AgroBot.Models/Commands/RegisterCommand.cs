@@ -37,8 +37,8 @@ namespace AgroBot.Models.Commands
                 ApplicationUser user = new ApplicationUser
                 {
                     ChatId = message.Chat.Id,
-                    FirstName = message.From.FirstName,
-                    LastName = message.From.LastName,
+                    FirstName = message.Chat.FirstName,
+                    LastName = message.Chat.LastName,
                     Id = Guid.NewGuid(),
                     IsRegistred = false
                 };
@@ -132,7 +132,7 @@ namespace AgroBot.Models.Commands
                                 list.Add(gr434);
                                 inlineKeyboardButtons.Add(list);                                
                                 InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup(inlineKeyboardButtons);
-                                await client.SendTextMessageAsync(chatId, item.FirstName + " " + item.LastName, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, replyMarkup: inlineKeyboardMarkup);
+                                await client.SendTextMessageAsync(chatId, "Удален " + item.FirstName + " " + item.LastName, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, replyMarkup: inlineKeyboardMarkup);
                             }
                         }
                         if (cmd.Length == 3 && cmd[2] == "Remove")
@@ -141,7 +141,6 @@ namespace AgroBot.Models.Commands
                             Guid.TryParse(cmd[1], out guid);
                             await _userService.DeleteAsync(guid);
                         }
-                        await client.SendTextMessageAsync(chatId, "попытка", Telegram.Bot.Types.Enums.ParseMode.Markdown);
                         if (cmd.Length == 4)
                         {
                             await client.SendTextMessageAsync(chatId, "попытка изменения роли", Telegram.Bot.Types.Enums.ParseMode.Markdown);
